@@ -1,0 +1,84 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-title>
+      Saved data
+    </ion-title>
+    <ion-button (click)="showConfirmAlert()" color="black" slot="end">
+      <ion-icon name="log-out"></ion-icon>
+      <ion-label>Logout</ion-label>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+
+  <ion-card-header>
+    <ion-card-title>{{name}}'s Saved Data</ion-card-title>
+  </ion-card-header>
+
+  <ion-header [translucent]="true">
+    <ion-toolbar color="dark">
+      <ion-title>
+        Saved Scanned Data
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card *ngIf="qr.length==0">
+    <ion-card-content>
+      <p>There is no saved scanned data</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-item *ngFor="let item of qr">
+    <ion-card>
+      <ion-card-content>
+        <p>
+          Scanned Code Text : <b>{{item}}</b>
+        </p>
+      </ion-card-content>
+      <ion-button *ngIf="item.includes('http')" expand="full" class="ion-home color-primary item" href="{{item}}">Open
+        Link</ion-button>
+      <ion-button expand="full" color="danger" (click)="deleteQrDB(item)">Delete</ion-button>
+
+
+    </ion-card>
+
+  </ion-item>
+  <ion-header [translucent]="true">
+    <ion-toolbar color="dark">
+      <ion-title>
+        Saved Created Data
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-card *ngIf="cqr.length==0">
+    <ion-card-content>
+
+      <p>There is no saved created data</p>
+    </ion-card-content>
+
+  </ion-card>
+  <ion-col>
+    <ion-item *ngFor="let item of cqr ;let i=index">
+
+      <ion-card>
+        <ion-card-content>
+          <ion-card>
+            <ion-text class="ion-text-center">
+              <h2>{{qrname[i]}}</h2>
+            </ion-text>
+          </ion-card>
+          <img src="{{item}}" width="100%">
+
+
+        </ion-card-content>
+        <ion-button expand="full" color="danger" (click)="deleteImgDB(item);deleteqrnameDB(qrname[i])">Delete QR Code
+        </ion-button>
+
+      </ion-card>
+
+    </ion-item>
+  </ion-col>
+</ion-content>

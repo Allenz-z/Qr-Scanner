@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-title>
+      Create QR Code
+    </ion-title>
+    <ion-button (click)="showConfirmAlert()" color="black" slot="end">
+      <ion-icon name="log-out"></ion-icon>
+      <ion-label>Logout</ion-label>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+
+      <ion-card-title>QR Code Creation</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-button expand="full" color="success" (click)="create()">Create QR Code</ion-button>
+    </ion-card-content>
+    <ion-card-content *ngIf="!buttonClicked">
+
+      <ion-card>
+
+        <ion-card-content>
+
+          <ngx-qrcode id="qrcode" [elementType]="elementType" [errorCorrectionLevel]="correctionLevel" [value]="value"
+            cssClass="bshadow"></ngx-qrcode>
+
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-input [(ngModel)]="name" placeholder="Enter QR name" type="text" required></ion-input>
+        <ion-textarea placeholder="Enter your text" [(ngModel)]="value"></ion-textarea>
+      </ion-card>
+      <ion-button expand="full" color="success" (click)="save()">Save QR Code</ion-button>
+    </ion-card-content>
+
+
+  </ion-card>
+</ion-content>

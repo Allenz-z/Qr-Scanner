@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-title>
+      QR Scans
+    </ion-title>
+    <ion-button (click)="showConfirmAlert()" color="black" slot="end">
+      <ion-icon name="log-out"></ion-icon>
+      <ion-label>Logout</ion-label>
+    </ion-button>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>QR Code Scanning</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button expand="full" color="success" (click)="scanBarcode()">Scan a Code</ion-button>
+
+    </ion-card-content>
+  </ion-card>
+  <div *ngIf="scannedData">
+    <ion-card>
+      <ion-card-content>
+        <h1>
+          Scanned Code Text : <b>{{ scannedData["text"] }}</b>
+        </h1>
+        <h1>
+          Scanned Code Format : <b>{{ scannedData["format"] }}</b>
+        </h1>
+      </ion-card-content>
+      <ion-button *ngIf="display" class="ion-home color-primary item" href="{{scannedData.text}}">Open Link</ion-button>
+
+    </ion-card>
+  </div>
+
+</ion-content>
